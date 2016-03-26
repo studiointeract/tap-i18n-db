@@ -79,14 +79,14 @@ Package.on_test(function (api) {
 
   api.use('tap-i18n-db', ['client', 'server']);
 
-  api.use('coffeescript', ['client', 'server']);
+  api.use('ecmascript', ['client', 'server']);
 
-  api.add_files('unittest/tests/helpers.coffee', ['client', 'server']);
-  api.add_files('unittest/tests/common.coffee', ['client', 'server']);
+  api.add_files('unittest/tests/helpers.js', ['client', 'server']);
+  api.add_files('unittest/tests/common.js', ['client', 'server']);
 EOF
 
     for test_name in "$@"; do
-        echo "api.add_files('unittest/tests/$test_name.coffee', ['client', 'server']);" >> package.js
+        echo "api.add_files('unittest/tests/$test_name.js', ['client', 'server']);" >> package.js
     done
 
     echo "});" >> package.js
@@ -94,8 +94,8 @@ EOF
 
 run_meteor_test () {
     local port=$1
-    export TAP_I18N_DIR="$(pwd)/.meteor/local/tap-i18n" 
-    export TAP_I18N_DEBUG="true" 
+    export TAP_I18N_DIR="$(pwd)/.meteor/local/tap-i18n"
+    export TAP_I18N_DEBUG="true"
     meteor --port=$1 test-packages ./
 }
 

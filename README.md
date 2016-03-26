@@ -27,10 +27,10 @@ Developed by <a href="http://www.meteorspark.com"><img src="http://www.meteorspa
 
 ## Getting Started
 
-**Step 1:** Install tap-i18n-db:
+**Step 1:** Install studiointeract:i18n-db:
 
 ```bash
-$ meteor add tap:i18n-db
+$ meteor add studiointeract:i18n-db
 ```
 
 **Step 2:** Initialize the collection you wish to translate with `new TAPi18n.Collection`
@@ -167,7 +167,7 @@ fields are kept in a in a subdocument named `i18n`, example:
 }
 ```
 
-You can maintain the above structure by yourself or use tap-i18n-db's 
+You can maintain the above structure by yourself or use tap-i18n-db's
 [translations editing methods](#collections---translations-editing).
 
 ### On the Client
@@ -197,33 +197,15 @@ rules that allow or restrict access to this field, you can control who can edit
 translations.
 
 
-
-## Package Developers
-
-You can use tap-i18n-db to support the translation of your package's
-collections. Keep in mind that it is the project developer that manage the
-client's language and set the supported languages.
-
-The i18n subdocuments of your collections will be ignored in projects that will
-use your package without installing and configuring tap-i18n.
-
-Please refer to the [Developing Packages section of tap-i18n's
-REAMDE](https://github.com/TAPevents/tap-i18n/#developing-packages) to get more
-background about tap-i18n and package development. You don't need to follow the
-"Setup tap-i18n" steps in your package to use tap-i18n-db.
-
-**Notes:**
-
-* All the [translation editing methods](#collections---translations-editing)
-  will fail if tap-i18n is not enabled in the project level. The optional
-  callback argument will be called with an error object as the first argument (a
-  log will be sent to the console if there is no callback).
-
 ## API
 
 ### Relevant tap-i18n Methods
 
-**TAPi18n.setLanguage(language\_tag)** *Client*
+**TAPi18n.setLanguage(language\_tag)** *Both*
+
+Documentation available on [TAPi18n's README](https://github.com/TAPevents/tap-i18n#tapi18n-api).
+
+**TAPi18n.getLanguage()** *Both*
 
 Documentation available on [TAPi18n's README](https://github.com/TAPevents/tap-i18n#tapi18n-api).
 
@@ -258,18 +240,13 @@ for arguments documentation.
 Publish a language aware record set.
 
 Use just like you use [Meteor.publish()](http://docs.meteor.com/#meteor_publish),
-but instead of using Collection.find() to generate a cursor use
-`tap_i18n_collection.i18nFind()`.
-
-Inside *func* you can get the client's language tag with `this.language`. It
-will be null if language is not defined.
 
 Just like it works in `Meteor.publish()` the publish function can return cursors,
 or control its published record set directly.
 
 Note: `TAPi18n.publish(null, ...)` is not supported.
 
-**tap_i18n_collection.i18nFind(selector, [options])** *Server*
+**tap_i18n_collection.find(selector, [options])** *Server*
 
 Generates a language aware cursor for the publish methods of TAPi18n.publish.
 
@@ -288,7 +265,7 @@ Use just like you use [Meteor.subscribe()](http://docs.meteor.com/#meteor_subscr
 
 **tap_i18n_collection.insertTranslations(doc, translations, [callback])** *Anywhere*
 
-Insert a document and its translations into the collection. Returns its unique _id.
+Insert a document and its translations into the collection. Returns its unique `_id.`
 
 The *doc* and *callback* arguments are just like [collection.insert()](http://docs.meteor.com/#insert).
 
@@ -467,7 +444,7 @@ The *language_tag* argument should be like in
 
 If *fields* is null and *language_tag* is not the collection's base language,
 all the translations to *language_tag* in the selected documents will be
-removed. If *language_tag* is the collection's base language 
+removed. If *language_tag* is the collection's base language
 
 If *fields* is null and *language_tag* is the collection's base language, the
 optional callback argument will be called with an error object as the first
@@ -511,7 +488,7 @@ environment.
 You can also test a specific environment:
 
     # tap-i18n is disabled in the project level
-    $ ./unittest/unittest-disabled 
+    $ ./unittest/unittest-disabled
 
     # tap-i18n enabled in the project level - default project-tap.i18n
     $ ./unittest/unittest-enabled
@@ -533,5 +510,3 @@ You can also test a specific environment:
 * [tap-i18n](https://github.com/TAPevents/tap-i18n)
 
 Sponsored by [TAPevents](http://tapevents.com)
-
-
