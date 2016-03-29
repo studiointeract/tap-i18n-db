@@ -80,7 +80,7 @@ class TAPi18nCollection extends Mongo.Collection {
 
     let supported_languages = TAPi18n.conf.supported_languages || Object.keys(TAPi18n.languages_names);
     if ((typeof options.lang !== "undefined" && options.lang !== null) && !(supported_languages.indexOf(options.lang) >= 0)) {
-      throw new Meteor.Error(400, "Not supported language");
+      throw new Meteor.Error(400, `Not supported language "${options.lang}", are you subscribing to the collection "${this._name}" using the TAPi18n.subscribe and not Meteor.subscribe`);
     }
 
     let original_fields = options.fields || {};
@@ -145,7 +145,7 @@ class TAPi18nCollection extends Mongo.Collection {
       }
     }
 
-    return super(selector, Object.assign({}, options, {
+    return super.find(selector, Object.assign({}, options, {
       transform: transform(options),
       fields: i18n_fields
     }));

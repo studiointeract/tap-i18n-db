@@ -1,7 +1,7 @@
 Package.describe({
   name: 'studiointeract:i18n-db',
   summary: 'Internationalization for Meteor Collections',
-  version: '0.5.0',
+  version: '0.5.1',
   git: 'https://github.com/studiointeract/tap-i18n-db'
 });
 
