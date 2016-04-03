@@ -1,7 +1,7 @@
 Package.describe({
   name: 'studiointeract:i18n-db',
   summary: 'Internationalization for Meteor Collections',
-  version: '0.5.1',
+  version: '0.5.2',
   git: 'https://github.com/studiointeract/tap-i18n-db'
 });
 
@@ -11,7 +11,7 @@ Npm.depends({
 
 Package.on_use(function (api) {
   api.versionsFrom('METEOR@1.2.1');
-
+  api.use('session');
   api.use([
       "ecmascript",
       "jquery",
