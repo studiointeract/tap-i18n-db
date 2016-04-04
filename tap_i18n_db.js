@@ -54,6 +54,11 @@ class TAPi18nCollection extends Mongo.Collection {
       options.lang = TAPi18n.getLanguage();
     }
 
+    // Allow for null language to return the full document.
+    if (options.lang == null) {
+      return super.find(selector, options);
+    }
+
     if (options.lang != 'en') {
       let _selector = extend({}, selector);
       selector = {};
